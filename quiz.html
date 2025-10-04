@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Online Quiz</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+  }
+  .quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .question {
+    margin-bottom: 20px;
+  }
+  .options label {
+    display: block;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+
+    border: 1px solid transparent;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+
+  .options label:hover {
+    background-color: #14cae2;
+    border-color: #000000;
+  }
+
+  input[type="radio"]:checked + label,
+  input[type="checkbox"]:checked + label {
+    background-color: #26c6da;
+    color: white;
+    border-color: #0097a7;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    display: none;
+  }
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #26c6da;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .submit-btn:hover {
+    background-color: #0097a7;
+  }
+</style>
+</head>
+<body>
+
+<div class="quiz-container">
+  <h2>Simple Online Quiz</h2>
+  <form id="quizForm">
+    
+    <div class="question">
+      <p>1. What is the capital of France?</p>
+      <div class="options">
+        <input type="radio" id="q1a" name="q1" value="Paris" />
+        <label for="q1a">Paris</label>
+
+        <input type="radio" id="q1b" name="q1" value="London" />
+        <label for="q1b">London</label>
+
+        <input type="radio" id="q1c" name="q1" value="Berlin" />
+        <label for="q1c">Berlin</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>2. Select all prime numbers:</p>
+      <div class="options">
+        <input type="checkbox" id="q2a" name="q2" value="2" />
+        <label for="q2a">2</label>
+
+        <input type="checkbox" id="q2b" name="q2" value="4" />
+        <label for="q2b">4</label>
+
+        <input type="checkbox" id="q2c" name="q2" value="5" />
+        <label for="q2c">5</label>
+      </div>
+    </div>
+    
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('quizForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = [...document.querySelectorAll('input[name="q2"]:checked')].map(cb => cb.value);
+
+    let message = "Your answers:\n";
+    message += "Q1: " + (q1 ? q1.value : "No answer") + "\n";
+    message += "Q2: " + (q2.length ? q2.join(", ") : "No answer");
+    
+    alert(message);
+  });
+</script>
+
+</body>
+</html>
